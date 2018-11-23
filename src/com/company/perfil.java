@@ -5,9 +5,10 @@ public class perfil {
     int login;
     perfil[] amigos;
 
-     void perfil(String nome, String senha, int login){
+     perfil perfil(String nome, String senha, int login){
         this.login = login;
         this.nome = nome;
         this.senha = senha;
     }
+
 }

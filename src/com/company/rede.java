@@ -1,6 +1,10 @@
 package com.company;
 
 public class rede {
-    String nome, senha;
-    int login;
+    perfil[] usuarios;
+    void novoPerfil (String nome, String senha, int login){
+        usuarios[login].senha = senha;
+        usuarios[login].login = login;
+        usuarios[login].nome = nome;
+    }
 }
