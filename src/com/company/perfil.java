@@ -5,10 +5,15 @@ public class perfil {
     int login;
     perfil[] amigos;
 
-     perfil perfil(String nome, String senha, int login){
-        this.login = login;
-        this.nome = nome;
+     public void setNome(String nome){
+         this.nome = nome;
+     }
+
+    public void setSenha(String senha) {
         this.senha = senha;
     }
 
+    public void setLogin(int login) {
+        this.login = login;
+    }
 }

@@ -5,4 +5,15 @@ public class comunidade {
     perfil[] integrantes;
     int tamanho;
 
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+    public void addIntegrante(perfil integrante, rede rede)
+    {
+        if(existe(integrante.login))
+        {
+            this.tamanho++;
+            this.integrantes[integrante.login] = integrante;
+        }
+    }
 }
