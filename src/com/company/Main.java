@@ -1,8 +1,18 @@
 package com.company;
-
+import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
+        rede iface = new rede();
+        display disp = new display();
+        boolean i = true;
+        boolean logado = false;
+        while (i){
+            if(!logado) {
+                disp.menu();
+                i = disp.decisaoInicial(i, iface, logado);
+            }
+        }
+
     }
 }

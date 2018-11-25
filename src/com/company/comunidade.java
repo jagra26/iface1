@@ -10,10 +10,7 @@ public class comunidade {
     }
     public void addIntegrante(perfil integrante, rede rede)
     {
-        if(existe(integrante.login))
-        {
-            this.tamanho++;
-            this.integrantes[integrante.login] = integrante;
-        }
+        this.tamanho++;
+
     }
 }
