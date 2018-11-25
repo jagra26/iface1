@@ -10,7 +10,7 @@ public class perfil {
         this.nome = "null";
         this.login = -1;
         this.amigos = new int[1000];
-        for(int i; i<1000; i++)
+        for(int i = 0; i<1000; i++)
         {
             this.amigos[i] = 0;
         }

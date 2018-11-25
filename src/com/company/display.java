@@ -26,7 +26,8 @@ public class display {
                     System.out.print("seja bem vindo ao iface\n");
                 }
                 else{
-                    System.out.print("senha incorreta");
+                    System.out.print("senha incorreta\n");
+                    menu();
                     return decisaoInicial(cont, rede1, log);
                 }
                 break;
@@ -34,6 +35,14 @@ public class display {
                 cont = false;
                 break;
             case 3:
+                System.out.print("digite o login -- numero de 0 a 999\n");
+                int login = entrada.nextInt();
+                System.out.print("digite a senha -- numero inteiro\n");
+                int senha = entrada.nextInt();
+                System.out.print("digite o nome -- numero inteiro\n");
+                String nome = entrada.nextLine();
+
+
                 break;
         }
         return cont;
