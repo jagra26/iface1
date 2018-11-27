@@ -18,14 +18,13 @@ public class display {
         senha = entrada.nextInt();
         if (rede1.usuarios[login].senha == senha)
         {
-            System.out.print("seja bem vindo ao iface\n");
+            System.out.printf("seja bem vindo ao iface %s\n", rede1.usuarios[login].nome);
             while (log)
             {
                log = menuUser(rede1, login, log);
             }
 
-        }
-        else{
+        }else{
             System.out.print("senha incorreta\n");
             menu();
             return decisaoInicial(cont, rede1, log);
@@ -213,6 +212,7 @@ public class display {
                 }else{
                     System.out.print("Você não possui solicitações\n");
                 }
+                break;
         }
         return log;
     }

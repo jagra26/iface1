@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3b5cde48-ad74-4de4-947c-cb93952af32f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/display.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/display.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/perfil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/perfil.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -51,16 +49,19 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/display.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="96" column="17" lean-forward="true" selection-start-line="96" selection-start-column="17" selection-end-line="96" selection-end-column="17" />
+            <state relative-caret-position="952">
+              <caret line="220" lean-forward="true" selection-start-line="220" selection-end-line="220" />
               <folding>
                 <element signature="method#menu#0;class#display#0" />
                 <element signature="method#entrar#0;class#display#0" />
                 <element signature="method#novoUsuario#0;class#display#0" />
                 <element signature="method#decisaoInicial#0;class#display#0" />
+                <element signature="method#info#0;class#display#0" />
                 <element signature="method#sumVector#0;class#display#0" />
                 <element signature="method#edit#0;class#display#0" />
                 <element signature="method#novaComunidade#0;class#display#0" />
+                <element signature="method#solicitacao#0;class#display#0" />
+                <element signature="method#tratarSolicitacao#0;class#display#0" />
               </folding>
             </state>
           </provider>
@@ -191,7 +192,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.1603928" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.5515548" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.1767594" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -241,16 +242,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/display.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="96" column="17" lean-forward="true" selection-start-line="96" selection-start-column="17" selection-end-line="96" selection-end-column="17" />
+        <state relative-caret-position="952">
+          <caret line="220" lean-forward="true" selection-start-line="220" selection-end-line="220" />
           <folding>
             <element signature="method#menu#0;class#display#0" />
             <element signature="method#entrar#0;class#display#0" />
             <element signature="method#novoUsuario#0;class#display#0" />
             <element signature="method#decisaoInicial#0;class#display#0" />
+            <element signature="method#info#0;class#display#0" />
             <element signature="method#sumVector#0;class#display#0" />
             <element signature="method#edit#0;class#display#0" />
             <element signature="method#novaComunidade#0;class#display#0" />
+            <element signature="method#solicitacao#0;class#display#0" />
+            <element signature="method#tratarSolicitacao#0;class#display#0" />
           </folding>
         </state>
       </provider>
