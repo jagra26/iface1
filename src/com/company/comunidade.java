@@ -13,4 +13,5 @@ public class comunidade {
         this.tamanho++;
 
     }
+
 }

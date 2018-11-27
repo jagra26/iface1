@@ -8,11 +8,16 @@ public class Main {
         boolean i = true;
         boolean logado = false;
         while (i){
-            if(!logado) {
-                disp.menu();
-                i = disp.decisaoInicial(i, iface, logado);
+            disp.menu();
+            i = disp.decisaoInicial(i, iface, logado);
+            if(!i)
+            {
+                break;
             }
+            //System.out.println(2);
+
         }
 
     }
+
 }
