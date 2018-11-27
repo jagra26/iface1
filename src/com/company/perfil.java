@@ -5,15 +5,17 @@ public class perfil {
     int senha;
     int login;
     int[] amigos;
-
+    int[] solicitacoes;
     public perfil (){
         this.senha = -1;
         this.nome = "null";
         this.login = -1;
         this.amigos = new int[1000];
+        this.solicitacoes = new int[1000];
         for(int i = 0; i<1000; i++)
         {
             this.amigos[i] = 0;
+            this.solicitacoes[i] = 0;
         }
     }
     public perfil (int login, int senha, String nome){
@@ -21,9 +23,11 @@ public class perfil {
         this.nome = nome;
         this.login = login;
         this.amigos = new int[1000];
+        this.solicitacoes = new int[1000];
         for(int i = 0; i<1000; i++)
         {
             this.amigos[i] = 0;
+            this.solicitacoes[i] = 0;
         }
     }
      public void setNome(String nome){

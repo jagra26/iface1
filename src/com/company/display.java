@@ -90,9 +90,9 @@ public class display {
             for (int i=0; i<1000; i++)
             {
                 if (rede1.usuarios[login].amigos[i] == 1){
-                    System.out.println(i);
+                    System.out.print(i);
                     System.out.print(" -- ");
-                    System.out.println(rede1.usuarios[i].nome);
+                    System.out.print(rede1.usuarios[i].nome);
                     System.out.print("\n");
                 }
             }
@@ -135,6 +135,39 @@ public class display {
         rede1.comunidades[numero] = new comunidade(titulo, admin);
         System.out.printf("comunidade %s criada com sucesso! \n", titulo);
     }
+    public void solicitacao(rede rede1, int login){
+        Scanner entrada = new Scanner(System.in);
+        int amilog;
+        System.out.print("Digite o login do usuario que você quer ser amigo \n");
+        amilog = entrada.nextInt();
+        rede1.usuarios[amilog].solicitacoes[login] = 1;
+        System.out.print("solicitacao enviada!");
+    }
+    public void tratarSolicitacao(rede rede1, int login){
+        Scanner entrada = new Scanner(System.in);
+        int resp;
+        for (int i = 0; i<1000; i++)
+        {
+            if (rede1.usuarios[login].solicitacoes[i]==1){
+                System.out.printf("%s quer ser seu amigo\naceitar - digite 1\nrecusar - digite 2\n limbo - digite 3\n",
+                        rede1.usuarios[i].nome);
+                resp = entrada.nextInt();
+                switch (resp){
+                    case 1:
+                        rede1.usuarios[login].amigos[i] = 1;
+                        rede1.usuarios[i].amigos[login] = 1;
+                        rede1.usuarios[login].solicitacoes[i] = 0;
+                        System.out.printf("Voce e %s são amigos agora!\n", rede1.usuarios[i].nome);
+                        break;
+                    case 2:
+                        rede1.usuarios[login].solicitacoes[i] = 0;
+                        break;
+                    case 3:
+                        break;
+                }
+            }
+        }
+    }
     public boolean menuUser(rede rede1, int login, boolean log)
     {
         System.out.print("Editar perfil - digite 1\n");
@@ -145,11 +178,16 @@ public class display {
         System.out.print("Informações da conta - digite 6\n");
         System.out.print("Sair - digite 7\n");
         System.out.print("Excluir conta - digite 8\n");
+        System.out.print("Solicitações de amizade - digite 9\n");
         Scanner entrada = new Scanner(System.in);
         int i = entrada.nextInt();
+        int j;
         switch (i) {
             case 1:
                 rede1.usuarios[login] = edit(rede1.usuarios[login]);
+                break;
+            case 2:
+                solicitacao(rede1, login);
                 break;
             case 4:
                 novaComunidade(rede1, rede1.usuarios[login]);
@@ -160,6 +198,21 @@ public class display {
             case 7:
                 log = false;
                 break;
+            case 8:
+                System.out.print("tem certeza que deseja excluir a conta?\n Sim - digite 1\n Não - digite 2\n");
+                j = entrada.nextInt();
+                if (j==1){
+                    rede1.usuarios[login] = new perfil();
+                    log = false;
+                }
+                break;
+            case 9:
+                if (sumVector(rede1.usuarios[login].solicitacoes)!= 0)
+                {
+                    tratarSolicitacao(rede1, login);
+                }else{
+                    System.out.print("Você não possui solicitações\n");
+                }
         }
         return log;
     }
