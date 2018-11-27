@@ -167,11 +167,74 @@ public class display {
             }
         }
     }
+    public void novaMsg(rede rede1, int login){
+        Scanner entrada = new Scanner(System.in);
+        System.out.print("digite o login do destinatario\n");
+        int destlog = entrada.nextInt();
+        String msg;
+        for (int i=0; i<1000; i++)
+        {
+            if (rede1.usuarios[login].mensagens[i]==null){
+                System.out.print("Digite a mensagem:\n");
+                entrada.nextLine();
+                msg = entrada.nextLine();
+                rede1.usuarios[login].mensagens[i] = new Mensagem(login, destlog, msg);
+                break;
+            }
+        }
+    }
+    public void msgNlidas(rede rede1, int login)
+    {
+        for (int i=0; i<1000; i++)
+        {
+            if (rede1.usuarios[login].mensagens[i]!=null && !rede1.usuarios[login].mensagens[i].lida){
+                System.out.printf("Mensagem de %s\n", rede1.usuarios[rede1.usuarios[login].mensagens[i].remetenteLog].nome);
+                System.out.println(rede1.usuarios[login].mensagens[i].msg);
+                System.out.print("\n");
+                rede1.usuarios[login].mensagens[i].lida = true;
+            }
+        }
+    }
+    public void msgDoArroba(rede rede1, int login){
+        Scanner entrada = new Scanner(System.in);
+        System.out.print("digite o login da pessoa\n");
+        int remlog = entrada.nextInt();
+        for (int i=0; i<1000; i++)
+        {
+            if (rede1.usuarios[login].mensagens[i]!=null && (rede1.usuarios[login].mensagens[i].remetenteLog)== remlog){
+                System.out.printf("Mensagem de %s\n", rede1.usuarios[remlog].nome);
+                System.out.println(rede1.usuarios[login].mensagens[i].msg);
+                System.out.print("\n");
+                if(!rede1.usuarios[login].mensagens[i].lida) {
+                    rede1.usuarios[login].mensagens[i].lida = true;
+                }
+            }
+        }
+    }
+    public void dispMsg(rede rede1, int login){
+        Scanner entrada = new Scanner(System.in);
+        System.out.print("Escrever mensagem - digite 1\n");
+        System.out.print("Ler mensagens não lidas - digite 2\n");
+        System.out.print("Ler mensagens de alguém especifico - digite 3\n");
+        int i = entrada.nextInt();
+        switch (i){
+            case 1:
+                novaMsg(rede1, login);
+                break;
+            case 2:
+                msgNlidas(rede1, login);
+                break;
+            case 3:
+                msgDoArroba(rede1, login);
+                break;
+
+        }
+    }
     public boolean menuUser(rede rede1, int login, boolean log)
     {
         System.out.print("Editar perfil - digite 1\n");
         System.out.print("Adicionar amigos - digite 2\n");
-        System.out.print("Enviar mensagem - digite 3\n");
+        System.out.print("Mensagens - digite 3\n");
         System.out.print("Criar comunidade - digite 4\n");
         System.out.print("Participar de comunidade - digite 5\n");
         System.out.print("Informações da conta - digite 6\n");
@@ -187,6 +250,9 @@ public class display {
                 break;
             case 2:
                 solicitacao(rede1, login);
+                break;
+            case 3:
+                dispMsg(rede1, login);
                 break;
             case 4:
                 novaComunidade(rede1, rede1.usuarios[login]);
