@@ -2,16 +2,22 @@ package com.company;
 
 public class comunidade {
     String titulo;
-    perfil[] integrantes;
+    int[] integrantes;
     int tamanho;
+    perfil admin;
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-    public void addIntegrante(perfil integrante, rede rede)
+    public comunidade ()
     {
-        this.tamanho++;
-
+        this.titulo = "null";
+        this.tamanho = 0;
+        this.integrantes = new int[1000];
+        this.admin = new perfil();
     }
-
+    public comunidade (String titulo, perfil admin)
+    {
+        this.titulo = titulo;
+        this.admin = admin;
+        this.tamanho = 1;
+        this.integrantes[admin.login] = 1;
+    }
 }

@@ -112,6 +112,7 @@ public class display {
         System.out.print("Digite o novo nome:");
         Scanner entrada = new Scanner(System.in);
         conta.nome = entrada.nextLine();
+        System.out.print("Nome alterado com sucesso\n\n");
         return conta;
     }
     public boolean menuUser(rede rede1, int login, boolean log)
