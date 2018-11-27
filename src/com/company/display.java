@@ -9,14 +9,6 @@ public class display {
         System.out.print("sair -  digite 2\n");
         System.out.print("novo usuario - digite 3\n");
     }
-    public boolean inverte(boolean value)
-    {
-        if (value){
-            return false;
-        }else{
-            return true;
-        }
-    }
     boolean entrar(boolean cont, rede rede1, boolean log){
         Scanner entrada = new Scanner(System.in);
         System.out.print("digite o login\n");
@@ -27,6 +19,11 @@ public class display {
         if (rede1.usuarios[login].senha == senha)
         {
             System.out.print("seja bem vindo ao iface\n");
+            while (log)
+            {
+               log = menuUser(rede1, login, log);
+            }
+
         }
         else{
             System.out.print("senha incorreta\n");
@@ -78,5 +75,69 @@ public class display {
         return cont;
 
     }
-    
+    public void info(rede rede1, int login)
+    {
+        String nome = "Nome: " + rede1.usuarios[login].nome + "\n";
+        System.out.println(nome);
+        System.out.print("Login: ");
+        System.out.println(login);
+        System.out.print("\n Amigos: \n");
+        if (sumVector(rede1.usuarios[login].amigos) == 0)
+        {
+            System.out.print("Você não possui amigos\n");
+        }else{
+            System.out.print("login -- nome\n");
+            for (int i=0; i<1000; i++)
+            {
+                if (rede1.usuarios[login].amigos[i] == 1){
+                    System.out.println(i);
+                    System.out.print(" -- ");
+                    System.out.println(rede1.usuarios[i].nome);
+                    System.out.print("\n");
+                }
+            }
+        }
+    }
+    public int sumVector(int[]vector)
+    {
+        int sum = 0;
+        for(int i = 0; i<1000 ; i++)
+        {
+            sum += vector[i];
+        }
+        return sum;
+    }
+    public perfil edit(perfil conta)
+    {
+        System.out.print("Digite o novo nome:");
+        Scanner entrada = new Scanner(System.in);
+        conta.nome = entrada.nextLine();
+        return conta;
+    }
+    public boolean menuUser(rede rede1, int login, boolean log)
+    {
+        System.out.print("Editar perfil - digite 1\n");
+        System.out.print("Adicionar amigos - digite 2\n");
+        System.out.print("Enviar mensagem - digite 3\n");
+        System.out.print("Criar comunidade - digite 4\n");
+        System.out.print("Participar de comunidade - digite 5\n");
+        System.out.print("Informações da conta - digite 6\n");
+        System.out.print("Sair - digite 7\n");
+        System.out.print("Excluir conta - digite 8\n");
+        Scanner entrada = new Scanner(System.in);
+        int i = entrada.nextInt();
+        switch (i) {
+            case 1:
+                rede1.usuarios[login] = edit(rede1.usuarios[login]);
+                break;
+            case 6:
+                info(rede1, login);
+                break;
+            case 7:
+                log = false;
+                break;
+        }
+        return log;
+    }
+
 }

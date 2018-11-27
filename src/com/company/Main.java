@@ -6,7 +6,7 @@ public class Main {
         rede iface = new rede();
         display disp = new display();
         boolean i = true;
-        boolean logado = false;
+        boolean logado = true;
         while (i){
             disp.menu();
             i = disp.decisaoInicial(i, iface, logado);
