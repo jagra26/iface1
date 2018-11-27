@@ -115,6 +115,26 @@ public class display {
         System.out.print("Nome alterado com sucesso\n\n");
         return conta;
     }
+    public void novaComunidade(rede rede1, perfil admin)
+    {
+        System.out.print("digite o titulo da comunidade:\n");
+        Scanner entrada  = new Scanner(System.in);
+        String titulo = entrada.nextLine();
+        int numero;
+        boolean livre = false;
+        do {
+            System.out.print("digite o numero da comunidade - inteiro de 0 a 999\n");
+            numero = entrada.nextInt();
+            if (rede1.numerosComunidades[numero] == 1){
+                System.out.print("numero ocupado, digite outro\n");
+            }else{
+                livre = true;
+            }
+        }while (!livre);
+        rede1.numerosComunidades[numero] = 1;
+        rede1.comunidades[numero] = new comunidade(titulo, admin);
+        System.out.printf("comunidade %s criada com sucesso! \n", titulo);
+    }
     public boolean menuUser(rede rede1, int login, boolean log)
     {
         System.out.print("Editar perfil - digite 1\n");
@@ -130,6 +150,9 @@ public class display {
         switch (i) {
             case 1:
                 rede1.usuarios[login] = edit(rede1.usuarios[login]);
+                break;
+            case 4:
+                novaComunidade(rede1, rede1.usuarios[login]);
                 break;
             case 6:
                 info(rede1, login);
