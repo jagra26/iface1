@@ -53,8 +53,7 @@ public class display {
         }
         return cont;
     }
-    public boolean decisaoInicial(boolean cont, rede rede1, boolean log)
-    {
+    public boolean decisaoInicial(boolean cont, rede rede1, boolean log) {
         Scanner entrada = new Scanner(System.in);
         int senha, login;
         int i = entrada.nextInt();
@@ -74,8 +73,7 @@ public class display {
         return cont;
 
     }
-    public void info(rede rede1, int login)
-    {
+    public void info(rede rede1, int login) {
         String nome = "Nome: " + rede1.usuarios[login].nome + "\n";
         System.out.println(nome);
         System.out.print("Login: ");
@@ -97,8 +95,7 @@ public class display {
             }
         }
     }
-    public int sumVector(int[]vector)
-    {
+    public int sumVector(int[]vector) {
         int sum = 0;
         for(int i = 0; i<1000 ; i++)
         {
@@ -106,8 +103,7 @@ public class display {
         }
         return sum;
     }
-    public perfil edit(perfil conta)
-    {
+    public perfil edit(perfil conta) {
         System.out.print("Digite o novo nome:");
         Scanner entrada = new Scanner(System.in);
         conta.nome = entrada.nextLine();
@@ -128,29 +124,29 @@ public class display {
                 entrarComunidade(rede1, login);
                 break;
             case 3:
-
+                inserirComunidade(rede1, login);
                 break;
         }
     }
     public void inserirComunidade (rede rede1, int login){
         Scanner entrada = new Scanner(System.in);
-        System.out.print("Insira o numero da comunidade");
+        System.out.print("Insira o numero da comunidade\n");
         int numero = entrada.nextInt();
         int forasteiro;
         if (rede1.comunidades[numero] == null){
-            System.out.print("comunidade não existente");
+            System.out.print("comunidade não existente\n");
         }else if (rede1.comunidades[numero].admin.login != login){
             System.out.print("Você não é admin dessa comunidade\n");
         }else {
-            System.out.print("insira o login do usuario que deseja inserir na comunidade");
+            System.out.print("insira o login do usuario que deseja inserir na comunidade\n");
             System.out.print(rede1.comunidades[numero].titulo);
+            entrada.nextLine();
             forasteiro = entrada.nextInt();
             rede1.comunidades[numero].integrantes[forasteiro] = 1;
             rede1.comunidades[numero].tamanho++;
         }
     }
-    public void novaComunidade(rede rede1, perfil admin, int login)
-    {
+    public void novaComunidade(rede rede1, perfil admin, int login) {
         System.out.print("digite o titulo da comunidade:\n");
         Scanner entrada  = new Scanner(System.in);
         String titulo = entrada.nextLine();
@@ -168,8 +164,7 @@ public class display {
         rede1.comunidades[numero] = new comunidade(titulo, admin, login);
         System.out.printf("comunidade %s criada com sucesso! \n", titulo);
     }
-    public void entrarComunidade(rede rede1, int login)
-    {
+    public void entrarComunidade(rede rede1, int login) {
         Scanner entrada = new Scanner(System.in);
         System.out.print("Insira o numero da comunidade");
         int numero = entrada.nextInt();
@@ -185,8 +180,8 @@ public class display {
     public void MsgAuto(rede rede1, int login, int destlog, String msg){
         for (int i=0; i<1000; i++)
         {
-            if (rede1.usuarios[login].mensagens[i]==null){
-                rede1.usuarios[login].mensagens[i] = new Mensagem(login, destlog, msg);
+            if (rede1.mensagens[i][login]==null){
+                rede1.mensagens[i][login] = new Mensagem(login, destlog, msg);
                 break;
             }
         }
@@ -231,24 +226,23 @@ public class display {
         String msg;
         for (int i=0; i<1000; i++)
         {
-            if (rede1.usuarios[login].mensagens[i]==null){
+            if (rede1.mensagens[i][login]==null){
                 System.out.print("Digite a mensagem:\n");
                 entrada.nextLine();
                 msg = entrada.nextLine();
-                rede1.usuarios[login].mensagens[i] = new Mensagem(login, destlog, msg);
+                rede1.mensagens[i][login] = new Mensagem(login, destlog, msg);
                 break;
             }
         }
     }
-    public void msgNlidas(rede rede1, int login)
-    {
+    public void msgNlidas(rede rede1, int login) {
         for (int i=0; i<1000; i++)
         {
-            if (rede1.usuarios[login].mensagens[i]!=null && !rede1.usuarios[login].mensagens[i].lida){
-                System.out.printf("Mensagem de %s\n", rede1.usuarios[rede1.usuarios[login].mensagens[i].remetenteLog].nome);
-                System.out.println(rede1.usuarios[login].mensagens[i].msg);
+            if (rede1.mensagens[i][login]!=null){
+                System.out.printf("Mensagem de %s\n", rede1.usuarios[rede1.mensagens[i][login].remetenteLog].nome);
+                System.out.println(rede1.mensagens[i][login].msg);
                 System.out.print("\n");
-                rede1.usuarios[login].mensagens[i].lida = true;
+                rede1.mensagens[i][login].lida = true;
             }
         }
     }
@@ -258,12 +252,12 @@ public class display {
         int remlog = entrada.nextInt();
         for (int i=0; i<1000; i++)
         {
-            if (rede1.usuarios[login].mensagens[i]!=null && (rede1.usuarios[login].mensagens[i].remetenteLog)== remlog){
+            if (rede1.mensagens[i][login]!=null && (rede1.mensagens[i][login].remetenteLog == remlog)){
                 System.out.printf("Mensagem de %s\n", rede1.usuarios[remlog].nome);
-                System.out.println(rede1.usuarios[login].mensagens[i].msg);
+                System.out.println(rede1.mensagens[i][login].msg);
                 System.out.print("\n");
-                if(!rede1.usuarios[login].mensagens[i].lida) {
-                    rede1.usuarios[login].mensagens[i].lida = true;
+                if(!rede1.mensagens[i][login].lida) {
+                    rede1.mensagens[i][login].lida = true;
                 }
             }
         }

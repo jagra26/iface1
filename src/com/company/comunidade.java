@@ -6,6 +6,7 @@ public class comunidade {
     int tamanho;
     perfil admin;
 
+
     public comunidade ()
     {
         this.titulo = "null";
@@ -20,5 +21,6 @@ public class comunidade {
         this.tamanho = 1;
         this.integrantes = new int[1000];
         this.integrantes[login] = 1;
+
     }
 }
