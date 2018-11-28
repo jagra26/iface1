@@ -16,7 +16,7 @@ public class display {
         login = entrada.nextInt();
         System.out.print("digite a senha\n");
         senha = entrada.nextInt();
-        if (rede1.usuarios[login].senha == senha)
+        if ((rede1.usuarios[login]!= null) && rede1.usuarios[login].senha == senha)
         {
             System.out.printf("seja bem vindo ao iface %s\n", rede1.usuarios[login].nome);
             while (log)
@@ -36,7 +36,7 @@ public class display {
         int senha, login;
         System.out.print("digite o login -- numero de 0 a 999\n");
         login = entrada.nextInt();
-        if (rede1.ocupado[login] == 0)
+        if (rede1.usuarios[login] == null)
         {
 
             System.out.print("digite a senha -- numero inteiro\n");
@@ -114,7 +114,42 @@ public class display {
         System.out.print("Nome alterado com sucesso\n\n");
         return conta;
     }
-    public void novaComunidade(rede rede1, perfil admin)
+    public void dispComunidade(rede rede1, int login){
+        Scanner entrada = new Scanner(System.in);
+        System.out.print("Nova comunidade - digite 1\n");
+        System.out.print("Entrar em uma comunidade - digite 2\n");
+        System.out.print("Inserir alguém na sua comunidade - digite 3\n");
+        int resp = entrada.nextInt();
+        switch (resp){
+            case 1:
+                novaComunidade(rede1, rede1.usuarios[login], login);
+                break;
+            case 2:
+                entrarComunidade(rede1, login);
+                break;
+            case 3:
+
+                break;
+        }
+    }
+    public void inserirComunidade (rede rede1, int login){
+        Scanner entrada = new Scanner(System.in);
+        System.out.print("Insira o numero da comunidade");
+        int numero = entrada.nextInt();
+        int forasteiro;
+        if (rede1.comunidades[numero] == null){
+            System.out.print("comunidade não existente");
+        }else if (rede1.comunidades[numero].admin.login != login){
+            System.out.print("Você não é admin dessa comunidade\n");
+        }else {
+            System.out.print("insira o login do usuario que deseja inserir na comunidade");
+            System.out.print(rede1.comunidades[numero].titulo);
+            forasteiro = entrada.nextInt();
+            rede1.comunidades[numero].integrantes[forasteiro] = 1;
+            rede1.comunidades[numero].tamanho++;
+        }
+    }
+    public void novaComunidade(rede rede1, perfil admin, int login)
     {
         System.out.print("digite o titulo da comunidade:\n");
         Scanner entrada  = new Scanner(System.in);
@@ -124,15 +159,37 @@ public class display {
         do {
             System.out.print("digite o numero da comunidade - inteiro de 0 a 999\n");
             numero = entrada.nextInt();
-            if (rede1.numerosComunidades[numero] == 1){
+            if (rede1.comunidades[numero] != null){
                 System.out.print("numero ocupado, digite outro\n");
             }else{
                 livre = true;
             }
         }while (!livre);
-        rede1.numerosComunidades[numero] = 1;
-        rede1.comunidades[numero] = new comunidade(titulo, admin);
+        rede1.comunidades[numero] = new comunidade(titulo, admin, login);
         System.out.printf("comunidade %s criada com sucesso! \n", titulo);
+    }
+    public void entrarComunidade(rede rede1, int login)
+    {
+        Scanner entrada = new Scanner(System.in);
+        System.out.print("Insira o numero da comunidade");
+        int numero = entrada.nextInt();
+        if (rede1.comunidades[numero] == null){
+            System.out.print("comunidade não existente");
+        }else {
+            String msg = "solicito entrar na comunidade" + rede1.comunidades[numero].titulo + "\n";
+            MsgAuto(rede1, login, rede1.comunidades[numero].admin.login, msg);
+            System.out.print("Solicitacão de entrada enviada\n");
+        }
+
+    }
+    public void MsgAuto(rede rede1, int login, int destlog, String msg){
+        for (int i=0; i<1000; i++)
+        {
+            if (rede1.usuarios[login].mensagens[i]==null){
+                rede1.usuarios[login].mensagens[i] = new Mensagem(login, destlog, msg);
+                break;
+            }
+        }
     }
     public void solicitacao(rede rede1, int login){
         Scanner entrada = new Scanner(System.in);
@@ -230,17 +287,31 @@ public class display {
 
         }
     }
+    public void index(rede rede1){
+        System.out.print("lista de usuários\n login - nome\n");
+        for (int i = 0; i<1000; i++){
+            if(rede1.usuarios[i]!=null){
+                System.out.printf("%d - %s\n", rede1.usuarios[i].login, rede1.usuarios[i].nome);
+            }
+        }
+        System.out.print("lista de comunidades\n numero - titulo - tamanho\n");
+        for (int i = 0; i<1000; i++){
+            if(rede1.comunidades[i]!=null){
+                System.out.printf("%d - %s - %d\n", i, rede1.comunidades[i].titulo, rede1.comunidades[i].tamanho);
+            }
+        }
+    }
     public boolean menuUser(rede rede1, int login, boolean log)
     {
         System.out.print("Editar perfil - digite 1\n");
         System.out.print("Adicionar amigos - digite 2\n");
         System.out.print("Mensagens - digite 3\n");
-        System.out.print("Criar comunidade - digite 4\n");
-        System.out.print("Participar de comunidade - digite 5\n");
-        System.out.print("Informações da conta - digite 6\n");
-        System.out.print("Sair - digite 7\n");
-        System.out.print("Excluir conta - digite 8\n");
-        System.out.print("Solicitações de amizade - digite 9\n");
+        System.out.print("Comunidades - digite 4\n");
+        System.out.print("Informações da conta - digite 5\n");
+        System.out.print("Sair - digite 6\n");
+        System.out.print("Excluir conta - digite 7\n");
+        System.out.print("Solicitações de amizade - digite 8\n");
+        System.out.print("Indice do iface - digite 9\n");
         Scanner entrada = new Scanner(System.in);
         int i = entrada.nextInt();
         int j;
@@ -255,29 +326,32 @@ public class display {
                 dispMsg(rede1, login);
                 break;
             case 4:
-                novaComunidade(rede1, rede1.usuarios[login]);
+                dispComunidade(rede1, login);
                 break;
-            case 6:
+            case 5:
                 info(rede1, login);
                 break;
-            case 7:
+            case 6:
                 log = false;
                 break;
-            case 8:
+            case 7:
                 System.out.print("tem certeza que deseja excluir a conta?\n Sim - digite 1\n Não - digite 2\n");
                 j = entrada.nextInt();
                 if (j==1){
-                    rede1.usuarios[login] = new perfil();
+                    rede1.usuarios[login] = null;
                     log = false;
                 }
                 break;
-            case 9:
+            case 8:
                 if (sumVector(rede1.usuarios[login].solicitacoes)!= 0)
                 {
                     tratarSolicitacao(rede1, login);
                 }else{
                     System.out.print("Você não possui solicitações\n");
                 }
+                break;
+            case 9:
+                index(rede1);
                 break;
         }
         return log;

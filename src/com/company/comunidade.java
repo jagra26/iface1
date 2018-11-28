@@ -13,11 +13,12 @@ public class comunidade {
         this.integrantes = new int[1000];
         this.admin = new perfil();
     }
-    public comunidade (String titulo, perfil admin)
+    public comunidade (String titulo, perfil admin, int login)
     {
         this.titulo = titulo;
         this.admin = admin;
         this.tamanho = 1;
-        this.integrantes[admin.login] = 1;
+        this.integrantes = new int[1000];
+        this.integrantes[login] = 1;
     }
 }
