@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3b5cde48-ad74-4de4-947c-cb93952af32f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/com/company/comunidade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/comunidade.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/display.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/display.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/perfil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/perfil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/rede.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/rede.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -33,8 +33,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/perfil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="28" column="44" selection-start-line="28" selection-start-column="44" selection-end-line="28" selection-end-column="44" />
+            <state>
+              <caret lean-forward="true" />
             </state>
           </provider>
         </entry>
@@ -51,8 +51,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/display.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="144" column="66" lean-forward="true" selection-start-line="144" selection-start-column="66" selection-end-line="144" selection-end-column="66" />
+            <state relative-caret-position="123">
+              <caret line="228" column="60" selection-start-line="228" selection-start-column="60" selection-end-line="228" selection-end-column="60" />
               <folding>
                 <element signature="method#menu#0;class#display#0" />
                 <element signature="method#entrar#0;class#display#0" />
@@ -62,12 +62,12 @@
                 <element signature="method#sumVector#0;class#display#0" />
                 <element signature="method#edit#0;class#display#0" />
                 <element signature="method#dispComunidade#0;class#display#0" />
+                <element signature="method#inserirComunidade#0;class#display#0" />
                 <element signature="method#novaComunidade#0;class#display#0" />
                 <element signature="method#entrarComunidade#0;class#display#0" />
                 <element signature="method#novaMsgAuto#0;class#display#0" />
                 <element signature="method#solicitacao#0;class#display#0" />
                 <element signature="method#tratarSolicitacao#0;class#display#0" />
-                <element signature="method#novaMsg#0;class#display#0" />
                 <element signature="method#msgNlidas#0;class#display#0" />
                 <element signature="method#msgDoArroba#0;class#display#0" />
                 <element signature="method#dispMsg#0;class#display#0" />
@@ -89,8 +89,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/rede.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="50" selection-start-line="9" selection-start-column="50" selection-end-line="9" selection-end-column="50" />
+            <state relative-caret-position="204">
+              <caret line="12" column="54" selection-start-line="12" selection-start-column="54" selection-end-line="12" selection-end-column="54" />
             </state>
           </provider>
         </entry>
@@ -117,9 +117,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/com/company/Main.java" />
-        <option value="$PROJECT_DIR$/src/com/company/perfil.java" />
         <option value="$PROJECT_DIR$/src/com/company/Mensagem.java" />
         <option value="$PROJECT_DIR$/src/com/company/comunidade.java" />
+        <option value="$PROJECT_DIR$/src/com/company/perfil.java" />
         <option value="$PROJECT_DIR$/src/com/company/rede.java" />
         <option value="$PROJECT_DIR$/src/com/company/display.java" />
       </list>
@@ -158,7 +158,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543373733980" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543375196525" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RunDashboard">
@@ -217,8 +217,8 @@
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.03927987" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.03764321" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.45335516" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.4811784" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -237,14 +237,27 @@
       <window_info anchor="right" id="Coverage" order="8" side_tool="true" weight="0.32980332" />
     </layout>
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/company/display.java</url>
+          <line>113</line>
+          <properties />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/com/company/display.java</url>
+          <line>221</line>
+          <properties class="com.company.display" method="novaMsg">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/company/perfil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="28" column="44" selection-start-line="28" selection-start-column="44" selection-end-line="28" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="48">
@@ -259,10 +272,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/rede.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/perfil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="50" selection-start-line="9" selection-start-column="50" selection-end-line="9" selection-end-column="50" />
+        <state>
+          <caret lean-forward="true" />
         </state>
       </provider>
     </entry>
@@ -273,10 +286,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/rede.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="54" selection-start-line="12" selection-start-column="54" selection-end-line="12" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/display.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="144" column="66" lean-forward="true" selection-start-line="144" selection-start-column="66" selection-end-line="144" selection-end-column="66" />
+        <state relative-caret-position="123">
+          <caret line="228" column="60" selection-start-line="228" selection-start-column="60" selection-end-line="228" selection-end-column="60" />
           <folding>
             <element signature="method#menu#0;class#display#0" />
             <element signature="method#entrar#0;class#display#0" />
@@ -286,12 +306,12 @@
             <element signature="method#sumVector#0;class#display#0" />
             <element signature="method#edit#0;class#display#0" />
             <element signature="method#dispComunidade#0;class#display#0" />
+            <element signature="method#inserirComunidade#0;class#display#0" />
             <element signature="method#novaComunidade#0;class#display#0" />
             <element signature="method#entrarComunidade#0;class#display#0" />
             <element signature="method#novaMsgAuto#0;class#display#0" />
             <element signature="method#solicitacao#0;class#display#0" />
             <element signature="method#tratarSolicitacao#0;class#display#0" />
-            <element signature="method#novaMsg#0;class#display#0" />
             <element signature="method#msgNlidas#0;class#display#0" />
             <element signature="method#msgDoArroba#0;class#display#0" />
             <element signature="method#dispMsg#0;class#display#0" />

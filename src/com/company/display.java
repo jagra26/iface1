@@ -178,9 +178,9 @@ public class display {
 
     }
     public void MsgAuto(rede rede1, int login, int destlog, String msg){
-        for (int i=0; i<1000; i++)
+        for (int i=0; i<100; i++)
         {
-            if (rede1.mensagens[i][login]==null){
+            if (rede1.mensagens[i][login].remetenteLog == -1){
                 rede1.mensagens[i][login] = new Mensagem(login, destlog, msg);
                 break;
             }
@@ -224,9 +224,9 @@ public class display {
         System.out.print("digite o login do destinatario\n");
         int destlog = entrada.nextInt();
         String msg;
-        for (int i=0; i<1000; i++)
+        for (int i=0; i<100; i++)
         {
-            if (rede1.mensagens[i][login]==null){
+            if (rede1.mensagens[i][login].remetenteLog == -1){
                 System.out.print("Digite a mensagem:\n");
                 entrada.nextLine();
                 msg = entrada.nextLine();
@@ -236,9 +236,9 @@ public class display {
         }
     }
     public void msgNlidas(rede rede1, int login) {
-        for (int i=0; i<1000; i++)
+        for (int i=0; i<100; i++)
         {
-            if (rede1.mensagens[i][login]!=null){
+            if (rede1.mensagens[i][login].remetenteLog !=-1){
                 System.out.printf("Mensagem de %s\n", rede1.usuarios[rede1.mensagens[i][login].remetenteLog].nome);
                 System.out.println(rede1.mensagens[i][login].msg);
                 System.out.print("\n");
@@ -250,9 +250,9 @@ public class display {
         Scanner entrada = new Scanner(System.in);
         System.out.print("digite o login da pessoa\n");
         int remlog = entrada.nextInt();
-        for (int i=0; i<1000; i++)
+        for (int i=0; i<100; i++)
         {
-            if (rede1.mensagens[i][login]!=null && (rede1.mensagens[i][login].remetenteLog == remlog)){
+            if (rede1.mensagens[i][login].remetenteLog == remlog){
                 System.out.printf("Mensagem de %s\n", rede1.usuarios[remlog].nome);
                 System.out.println(rede1.mensagens[i][login].msg);
                 System.out.print("\n");

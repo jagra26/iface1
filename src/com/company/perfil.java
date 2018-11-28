@@ -6,14 +6,12 @@ public class perfil {
     int login;
     int[] amigos;
     int[] solicitacoes;
-    Mensagem[] mensagens;
     public perfil (){
         this.senha = -1;
         this.nome = "null";
         this.login = -1;
         this.amigos = new int[1000];
         this.solicitacoes = new int[1000];
-        this.mensagens = new Mensagem[1000];
         for(int i = 0; i<1000; i++)
         {
             this.amigos[i] = 0;
@@ -26,7 +24,6 @@ public class perfil {
         this.login = login;
         this.amigos = new int[1000];
         this.solicitacoes = new int[1000];
-        this.mensagens = new Mensagem[1000];
         for(int i = 0; i<1000; i++)
         {
             this.amigos[i] = 0;
