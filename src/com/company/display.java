@@ -81,14 +81,6 @@ public class display {
             }
         }
     }
-    public int sumVector(int[]vector) {
-        int sum = 0;
-        for(int i = 0; i<1000 ; i++)
-        {
-            sum += vector[i];
-        }
-        return sum;
-    }
     public void edit(perfil conta) {
         System.out.print("Digite o novo nome:");
         Scanner entrada = new Scanner(System.in);
@@ -104,7 +96,7 @@ public class display {
         int resp = entrada.nextInt();
         switch (resp){
             case 1:
-                novaComunidade(rede1, rede1.usuarios.get(login), login);
+                novaComunidade(rede1, login);
                 break;
             case 2:
                 entrarComunidade(rede1, login);
@@ -119,9 +111,9 @@ public class display {
         System.out.print("Insira o numero da comunidade\n");
         int numero = entrada.nextInt();
         int forasteiro;
-        if (rede1.comunidades.get(numero) == null){
+        /*if (rede1.comunidades.get(numero) == null){
             System.out.print("comunidade não existente\n");
-        }else if (rede1.comunidades.get(login).admin.login != login){
+        }else*/ if (rede1.comunidades.get(numero).admin != login){
             System.out.print("Você não é admin dessa comunidade\n");
         }else {
             System.out.print("insira o login do usuario que deseja inserir na comunidade\n");
@@ -130,27 +122,31 @@ public class display {
             rede1.comunidades.get(numero).integrantes.add(forasteiro);
         }
     }
-    public void novaComunidade(rede rede1, perfil admin, int login) {
+    public void novaComunidade(rede rede1, int login) {
         System.out.print("digite o titulo da comunidade:\n");
         Scanner entrada  = new Scanner(System.in);
         String titulo = entrada.nextLine();
-        comunidade novacomunidade = new comunidade(titulo, admin, login);
+        comunidade novacomunidade = new comunidade(titulo, login, login);
         rede1.comunidades.add(novacomunidade);
         System.out.printf("comunidade %s criada com sucesso! \n", titulo);
+        System.out.print("numero da comunidade: " + rede1.comunidades.indexOf(novacomunidade));
     }
     public void entrarComunidade(rede rede1, int login) {
         Scanner entrada = new Scanner(System.in);
         System.out.print("Insira o numero da comunidade");
         int numero = entrada.nextInt();
-        if (rede1.comunidades.get(numero) == null){
+
+        String msg = "solicito entrar na comunidade " + rede1.comunidades.get(numero).titulo + "\n";
+        MsgAuto(rede1, login, rede1.comunidades.get(numero).admin, msg);
+        System.out.print("Solicitacão de entrada enviada\n");}
+        /*/if (rede1.comunidades.get(numero) == null){
             System.out.print("comunidade não existente");
-        }else {
+        }/else* {
             String msg = "solicito entrar na comunidade " + rede1.comunidades.get(numero).titulo + "\n";
             MsgAuto(rede1, login, rede1.comunidades.get(numero).admin.login, msg);
             System.out.print("Solicitacão de entrada enviada\n");
-        }
+        }*/
 
-    }
     public void MsgAuto(rede rede1, int login, int destlog, String msg){
         rede1.usuarios.get(destlog).mensagens.add(new Mensagem(login, destlog, msg));
     }
@@ -165,15 +161,17 @@ public class display {
     public void tratarSolicitacao(rede rede1, int login){
         Scanner entrada = new Scanner(System.in);
         int resp;
-        for (int i = 0; i<rede1.usuarios.get(login).solicitacoes.size(); i++)
-        {
+        System.out.print(rede1.usuarios.get(login).solicitacoes.size() + "\n");
+        for (Integer i: rede1.usuarios.get(login).solicitacoes
+             ) {
+            if (i != -1){
                 System.out.printf("%s quer ser seu amigo\naceitar - digite 1\nrecusar - digite 2\n limbo - digite 3\n",
-                        rede1.usuarios.get(i).nome);
+                        rede1.usuarios.get(rede1.usuarios.get(login).solicitacoes.get(i)).nome);
                 resp = entrada.nextInt();
-                switch (resp){
+                switch (resp) {
                     case 1:
                         rede1.usuarios.get(login).amigos.add(rede1.usuarios.get(login).solicitacoes.get(i));
-                        rede1.usuarios.get(i).amigos.add(login);
+                        //rede1.usuarios.get(i).amigos.add(login);
                         rede1.usuarios.get(login).solicitacoes.add(i, -1);
                         System.out.printf("Voce e %s são amigos agora!\n", rede1.usuarios.get(i).nome);
                         break;
@@ -183,14 +181,8 @@ public class display {
                     case 3:
                         break;
                 }
-
-        }
-        for (int i = 0; i<rede1.usuarios.get(login).solicitacoes.size(); i++){
-            if (rede1.usuarios.get(login).solicitacoes.get(i) == -1){
-                rede1.usuarios.get(login).solicitacoes.remove(i);
             }
         }
-
     }
     public void novaMsg(rede rede1, int login){
         Scanner entrada = new Scanner(System.in);
@@ -210,7 +202,7 @@ public class display {
             && !rede1.usuarios.get(login).mensagens.get(i).lida){
                 System.out.print("Mensagem de: " + rede1.usuarios.get(rede1.usuarios.get(login).mensagens.get(i).remetenteLog).nome
                 + "\n" + rede1.usuarios.get(login).mensagens.get(i).msg + "\n");
-                rede1.usuarios.get(login).mensagens.get(i).lida = true;1
+                rede1.usuarios.get(login).mensagens.get(i).lida = true;
             }
         }
     }
@@ -301,6 +293,7 @@ public class display {
                 if (rede1.usuarios.get(login).solicitacoes.size() != 0)
                 {
                     tratarSolicitacao(rede1, login);
+                    break;
                 }else{
                     System.out.print("Você não possui solicitações\n");
                 }
