@@ -16,9 +16,9 @@ public class display {
         login = entrada.nextInt();
         System.out.print("digite a senha\n");
         senha = entrada.nextInt();
-        if ((rede1.usuarios[login]!= null) && rede1.usuarios[login].senha == senha)
+        if ((rede1.usuarios.get(login)!= null) && rede1.usuarios.get(login).senha == senha)
         {
-            System.out.printf("seja bem vindo ao iface %s\n", rede1.usuarios[login].nome);
+            System.out.printf("seja bem vindo ao iface %s\n", rede1.usuarios.get(login).nome);
             while (log)
             {
                log = menuUser(rede1, login, log);
@@ -33,24 +33,19 @@ public class display {
     }
     boolean novoUsuario(boolean cont, rede rede1, boolean log){
         Scanner entrada = new Scanner(System.in);
-        int senha, login;
-        System.out.print("digite o login -- numero de 0 a 999\n");
-        login = entrada.nextInt();
-        if (rede1.usuarios[login] == null)
-        {
-
-            System.out.print("digite a senha -- numero inteiro\n");
-            senha = entrada.nextInt();
-            System.out.print("digite o nome \n");
-            String nome = entrada.next();
-            rede1.usuarios[login] = new perfil(login, senha, nome);
-            System.out.print("usuario cadastrado\n");
-            entrar(cont, rede1, log);
-        }else{
-            System.out.print("login ocupado\n");
-            menu();
-            return decisaoInicial(cont, rede1, log);
-        }
+        int senha;
+        perfil novousuario;
+        System.out.print("digite a senha -- numero inteiro\n");
+        senha = entrada.nextInt();
+        System.out.print("digite o nome \n");
+        String nome = entrada.next();
+        novousuario = new perfil(senha, nome);
+        rede1.usuarios.add(novousuario);
+        int login = rede1.usuarios.indexOf(novousuario);
+        rede1.usuarios.get(login).login = login;
+        System.out.print("Seu login : " + login + "\n");
+        System.out.print("usuario cadastrado\n");
+        entrar(cont, rede1, log);
         return cont;
     }
     public boolean decisaoInicial(boolean cont, rede rede1, boolean log) {
@@ -74,24 +69,15 @@ public class display {
 
     }
     public void info(rede rede1, int login) {
-        String nome = "Nome: " + rede1.usuarios[login].nome + "\n";
-        System.out.println(nome);
-        System.out.print("Login: ");
-        System.out.println(login);
-        System.out.print("\n Amigos: \n");
-        if (sumVector(rede1.usuarios[login].amigos) == 0)
+        System.out.print(rede1.usuarios.get(login));
+        if (rede1.usuarios.get(login).amigos.size() == 0)
         {
             System.out.print("Você não possui amigos\n");
         }else{
-            System.out.print("login -- nome\n");
-            for (int i=0; i<1000; i++)
+            System.out.print("nome -- login\n");
+            for (int i=0; i<rede1.usuarios.get(login).amigos.size(); i++)
             {
-                if (rede1.usuarios[login].amigos[i] == 1){
-                    System.out.print(i);
-                    System.out.print(" -- ");
-                    System.out.print(rede1.usuarios[i].nome);
-                    System.out.print("\n");
-                }
+                info(rede1, rede1.usuarios.get(login).amigos.get(i));
             }
         }
     }
@@ -103,12 +89,12 @@ public class display {
         }
         return sum;
     }
-    public perfil edit(perfil conta) {
+    public void edit(perfil conta) {
         System.out.print("Digite o novo nome:");
         Scanner entrada = new Scanner(System.in);
         conta.nome = entrada.nextLine();
         System.out.print("Nome alterado com sucesso\n\n");
-        return conta;
+
     }
     public void dispComunidade(rede rede1, int login){
         Scanner entrada = new Scanner(System.in);
@@ -118,7 +104,7 @@ public class display {
         int resp = entrada.nextInt();
         switch (resp){
             case 1:
-                novaComunidade(rede1, rede1.usuarios[login], login);
+                novaComunidade(rede1, rede1.usuarios.get(login), login);
                 break;
             case 2:
                 entrarComunidade(rede1, login);
@@ -133,116 +119,98 @@ public class display {
         System.out.print("Insira o numero da comunidade\n");
         int numero = entrada.nextInt();
         int forasteiro;
-        if (rede1.comunidades[numero] == null){
+        if (rede1.comunidades.get(numero) == null){
             System.out.print("comunidade não existente\n");
-        }else if (rede1.comunidades[numero].admin.login != login){
+        }else if (rede1.comunidades.get(login).admin.login != login){
             System.out.print("Você não é admin dessa comunidade\n");
         }else {
             System.out.print("insira o login do usuario que deseja inserir na comunidade\n");
-            System.out.print(rede1.comunidades[numero].titulo);
             entrada.nextLine();
             forasteiro = entrada.nextInt();
-            rede1.comunidades[numero].integrantes[forasteiro] = 1;
-            rede1.comunidades[numero].tamanho++;
+            rede1.comunidades.get(numero).integrantes.add(forasteiro);
         }
     }
     public void novaComunidade(rede rede1, perfil admin, int login) {
         System.out.print("digite o titulo da comunidade:\n");
         Scanner entrada  = new Scanner(System.in);
         String titulo = entrada.nextLine();
-        int numero;
-        boolean livre = false;
-        do {
-            System.out.print("digite o numero da comunidade - inteiro de 0 a 999\n");
-            numero = entrada.nextInt();
-            if (rede1.comunidades[numero] != null){
-                System.out.print("numero ocupado, digite outro\n");
-            }else{
-                livre = true;
-            }
-        }while (!livre);
-        rede1.comunidades[numero] = new comunidade(titulo, admin, login);
+        comunidade novacomunidade = new comunidade(titulo, admin, login);
+        rede1.comunidades.add(novacomunidade);
         System.out.printf("comunidade %s criada com sucesso! \n", titulo);
     }
     public void entrarComunidade(rede rede1, int login) {
         Scanner entrada = new Scanner(System.in);
         System.out.print("Insira o numero da comunidade");
         int numero = entrada.nextInt();
-        if (rede1.comunidades[numero] == null){
+        if (rede1.comunidades.get(numero) == null){
             System.out.print("comunidade não existente");
         }else {
-            String msg = "solicito entrar na comunidade" + rede1.comunidades[numero].titulo + "\n";
-            MsgAuto(rede1, login, rede1.comunidades[numero].admin.login, msg);
+            String msg = "solicito entrar na comunidade " + rede1.comunidades.get(numero).titulo + "\n";
+            MsgAuto(rede1, login, rede1.comunidades.get(numero).admin.login, msg);
             System.out.print("Solicitacão de entrada enviada\n");
         }
 
     }
     public void MsgAuto(rede rede1, int login, int destlog, String msg){
-        for (int i=0; i<100; i++)
-        {
-            if (rede1.mensagens[i][login].remetenteLog == -1){
-                rede1.mensagens[i][login] = new Mensagem(login, destlog, msg);
-                break;
-            }
-        }
+        rede1.mensagens.add(new Mensagem(login, destlog, msg));
     }
     public void solicitacao(rede rede1, int login){
         Scanner entrada = new Scanner(System.in);
         int amilog;
         System.out.print("Digite o login do usuario que você quer ser amigo \n");
         amilog = entrada.nextInt();
-        rede1.usuarios[amilog].solicitacoes[login] = 1;
+        rede1.usuarios.get(amilog).solicitacoes.add(login);
         System.out.print("solicitacao enviada!");
     }
     public void tratarSolicitacao(rede rede1, int login){
         Scanner entrada = new Scanner(System.in);
         int resp;
-        for (int i = 0; i<1000; i++)
+        for (int i = 0; i<rede1.usuarios.get(login).solicitacoes.size(); i++)
         {
-            if (rede1.usuarios[login].solicitacoes[i]==1){
                 System.out.printf("%s quer ser seu amigo\naceitar - digite 1\nrecusar - digite 2\n limbo - digite 3\n",
-                        rede1.usuarios[i].nome);
+                        rede1.usuarios.get(i).nome);
                 resp = entrada.nextInt();
                 switch (resp){
                     case 1:
-                        rede1.usuarios[login].amigos[i] = 1;
-                        rede1.usuarios[i].amigos[login] = 1;
-                        rede1.usuarios[login].solicitacoes[i] = 0;
-                        System.out.printf("Voce e %s são amigos agora!\n", rede1.usuarios[i].nome);
+                        rede1.usuarios.get(login).amigos.add(rede1.usuarios.get(login).solicitacoes.get(i));
+                        rede1.usuarios.get(i).amigos.add(login);
+                        rede1.usuarios.get(login).solicitacoes.add(i, -1);
+                        System.out.printf("Voce e %s são amigos agora!\n", rede1.usuarios.get(i).nome);
                         break;
                     case 2:
-                        rede1.usuarios[login].solicitacoes[i] = 0;
+                        rede1.usuarios.get(login).solicitacoes.add(i, -1);
                         break;
                     case 3:
                         break;
                 }
+
+        }
+        for (int i = 0; i<rede1.usuarios.get(login).solicitacoes.size(); i++){
+            if (rede1.usuarios.get(login).solicitacoes.get(i) == -1){
+                rede1.usuarios.get(login).solicitacoes.remove(i);
             }
         }
+
     }
     public void novaMsg(rede rede1, int login){
         Scanner entrada = new Scanner(System.in);
         System.out.print("digite o login do destinatario\n");
         int destlog = entrada.nextInt();
-        String msg;
-        for (int i=0; i<100; i++)
-        {
-            if (rede1.mensagens[i][login].remetenteLog == -1){
-                System.out.print("Digite a mensagem:\n");
-                entrada.nextLine();
-                msg = entrada.nextLine();
-                rede1.mensagens[i][login] = new Mensagem(login, destlog, msg);
-                break;
-            }
-        }
+        String txt;
+        System.out.print("Digite a mensagem:\n");
+        entrada.nextLine();
+        txt = entrada.nextLine();
+        Mensagem msg = new Mensagem(login,destlog, txt);
+        rede1.mensagens.add(msg);
+        System.out.print("mensagem enviada!");
     }
     public void msgNlidas(rede rede1, int login) {
-        for (int i=0; i<100; i++)
-        {
-            if (rede1.mensagens[i][login].remetenteLog !=-1){
-                System.out.printf("Mensagem de %s\n", rede1.usuarios[rede1.mensagens[i][login].remetenteLog].nome);
-                System.out.println(rede1.mensagens[i][login].msg);
-                System.out.print("\n");
-                rede1.mensagens[i][login].lida = true;
+        for (Mensagem msg: rede1.mensagens
+             ) {
+            if (msg.destinatarioLog == login && !msg.lida){
+                System.out.print("mensagem de " + rede1.usuarios.get(msg.remetenteLog).nome +
+                        "\n" + msg.msg + "\n-----------\n");
+                msg.lida = true;
             }
         }
     }
@@ -250,15 +218,12 @@ public class display {
         Scanner entrada = new Scanner(System.in);
         System.out.print("digite o login da pessoa\n");
         int remlog = entrada.nextInt();
-        for (int i=0; i<100; i++)
-        {
-            if (rede1.mensagens[i][login].remetenteLog == remlog){
-                System.out.printf("Mensagem de %s\n", rede1.usuarios[remlog].nome);
-                System.out.println(rede1.mensagens[i][login].msg);
-                System.out.print("\n");
-                if(!rede1.mensagens[i][login].lida) {
-                    rede1.mensagens[i][login].lida = true;
-                }
+        for (Mensagem msg: rede1.mensagens
+        ) {
+            if (msg.destinatarioLog == login && msg.remetenteLog == remlog){
+                System.out.print("mensagem de " + rede1.usuarios.get(remlog).nome +
+                        "\n" + msg.msg + "\n-----------\n");
+                msg.lida = true;
             }
         }
     }
@@ -283,20 +248,15 @@ public class display {
     }
     public void index(rede rede1){
         System.out.print("lista de usuários\n login - nome\n");
-        for (int i = 0; i<1000; i++){
-            if(rede1.usuarios[i]!=null){
-                System.out.printf("%d - %s\n", rede1.usuarios[i].login, rede1.usuarios[i].nome);
-            }
+        for (int i = 0; i<rede1.usuarios.size(); i++){
+            System.out.print(rede1.usuarios.get(i));
         }
         System.out.print("lista de comunidades\n numero - titulo - tamanho\n");
-        for (int i = 0; i<1000; i++){
-            if(rede1.comunidades[i]!=null){
-                System.out.printf("%d - %s - %d\n", i, rede1.comunidades[i].titulo, rede1.comunidades[i].tamanho);
-            }
+        for (int i = 0; i<rede1.comunidades.size(); i++){
+            System.out.print(i + " " + rede1.comunidades.get(i) +"\n");
         }
     }
-    public boolean menuUser(rede rede1, int login, boolean log)
-    {
+    public boolean menuUser(rede rede1, int login, boolean log) /*terminar*/{
         System.out.print("Editar perfil - digite 1\n");
         System.out.print("Adicionar amigos - digite 2\n");
         System.out.print("Mensagens - digite 3\n");
@@ -311,7 +271,7 @@ public class display {
         int j;
         switch (i) {
             case 1:
-                rede1.usuarios[login] = edit(rede1.usuarios[login]);
+                edit(rede1.usuarios.get(login));
                 break;
             case 2:
                 solicitacao(rede1, login);
@@ -332,12 +292,13 @@ public class display {
                 System.out.print("tem certeza que deseja excluir a conta?\n Sim - digite 1\n Não - digite 2\n");
                 j = entrada.nextInt();
                 if (j==1){
-                    rede1.usuarios[login] = null;
-                    log = false;
+                    rede1.usuarios.remove(login);
+                    menu();
+                    log = decisaoInicial(true, rede1, log);
                 }
                 break;
             case 8:
-                if (sumVector(rede1.usuarios[login].solicitacoes)!= 0)
+                if (rede1.usuarios.get(login).solicitacoes.size() != 0)
                 {
                     tratarSolicitacao(rede1, login);
                 }else{

@@ -10,11 +10,6 @@ public class Main {
         while (i){
             disp.menu();
             i = disp.decisaoInicial(i, iface, logado);
-            if(!i)
-            {
-                break;
-            }
-            //System.out.println(2);
 
         }
 

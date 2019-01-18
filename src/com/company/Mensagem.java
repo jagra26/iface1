@@ -5,12 +5,6 @@ public class Mensagem {
     int destinatarioLog;
     boolean lida;
     String msg;
-    public Mensagem(){
-        this.remetenteLog = -1;
-        this.destinatarioLog = -1;
-        this.msg = "Null";
-        this.lida = false;
-    }
     public Mensagem(int remetente, int destinatario, String msg)
     {
         this.remetenteLog = remetente;
