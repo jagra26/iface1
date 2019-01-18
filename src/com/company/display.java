@@ -152,7 +152,7 @@ public class display {
 
     }
     public void MsgAuto(rede rede1, int login, int destlog, String msg){
-        rede1.mensagens.add(new Mensagem(login, destlog, msg));
+        rede1.usuarios.get(destlog).mensagens.add(new Mensagem(login, destlog, msg));
     }
     public void solicitacao(rede rede1, int login){
         Scanner entrada = new Scanner(System.in);
@@ -201,16 +201,16 @@ public class display {
         entrada.nextLine();
         txt = entrada.nextLine();
         Mensagem msg = new Mensagem(login,destlog, txt);
-        rede1.mensagens.add(msg);
+        rede1.usuarios.get(destlog).mensagens.add(msg);
         System.out.print("mensagem enviada!");
     }
     public void msgNlidas(rede rede1, int login) {
-        for (Mensagem msg: rede1.mensagens
-             ) {
-            if (msg.destinatarioLog == login && !msg.lida){
-                System.out.print("mensagem de " + rede1.usuarios.get(msg.remetenteLog).nome +
-                        "\n" + msg.msg + "\n-----------\n");
-                msg.lida = true;
+        for (int i = 0; i <rede1.usuarios.get(login).mensagens.size() ; i++) {
+            if (rede1.usuarios.get(login).mensagens.get(i).destinatarioLog == login
+            && !rede1.usuarios.get(login).mensagens.get(i).lida){
+                System.out.print("Mensagem de: " + rede1.usuarios.get(rede1.usuarios.get(login).mensagens.get(i).remetenteLog).nome
+                + "\n" + rede1.usuarios.get(login).mensagens.get(i).msg + "\n");
+                rede1.usuarios.get(login).mensagens.get(i).lida = true;1
             }
         }
     }
@@ -218,7 +218,7 @@ public class display {
         Scanner entrada = new Scanner(System.in);
         System.out.print("digite o login da pessoa\n");
         int remlog = entrada.nextInt();
-        for (Mensagem msg: rede1.mensagens
+        for (Mensagem msg: rede1.usuarios.get(login).mensagens
         ) {
             if (msg.destinatarioLog == login && msg.remetenteLog == remlog){
                 System.out.print("mensagem de " + rede1.usuarios.get(remlog).nome +
