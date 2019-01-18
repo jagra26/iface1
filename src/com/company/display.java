@@ -111,9 +111,9 @@ public class display {
         System.out.print("Insira o numero da comunidade\n");
         int numero = entrada.nextInt();
         int forasteiro;
-        /*if (rede1.comunidades.get(numero) == null){
+        if (numero > rede1.comunidades.size()){
             System.out.print("comunidade não existente\n");
-        }else*/ if (rede1.comunidades.get(numero).admin != login){
+        }else if (rede1.comunidades.get(numero).admin != login){
             System.out.print("Você não é admin dessa comunidade\n");
         }else {
             System.out.print("insira o login do usuario que deseja inserir na comunidade\n");
@@ -133,20 +133,16 @@ public class display {
     }
     public void entrarComunidade(rede rede1, int login) {
         Scanner entrada = new Scanner(System.in);
-        System.out.print("Insira o numero da comunidade");
+        System.out.print("Insira o numero da comunidade\n");
         int numero = entrada.nextInt();
-
-        String msg = "solicito entrar na comunidade " + rede1.comunidades.get(numero).titulo + "\n";
-        MsgAuto(rede1, login, rede1.comunidades.get(numero).admin, msg);
-        System.out.print("Solicitacão de entrada enviada\n");}
-        /*/if (rede1.comunidades.get(numero) == null){
-            System.out.print("comunidade não existente");
-        }/else* {
+        if (numero > rede1.comunidades.size()) {
+            System.out.print("comunidade não existente\n");
+        } else {
             String msg = "solicito entrar na comunidade " + rede1.comunidades.get(numero).titulo + "\n";
-            MsgAuto(rede1, login, rede1.comunidades.get(numero).admin.login, msg);
+            MsgAuto(rede1, login, rede1.comunidades.get(numero).admin, msg);
             System.out.print("Solicitacão de entrada enviada\n");
-        }*/
-
+        }
+    }
     public void MsgAuto(rede rede1, int login, int destlog, String msg){
         rede1.usuarios.get(destlog).mensagens.add(new Mensagem(login, destlog, msg));
     }

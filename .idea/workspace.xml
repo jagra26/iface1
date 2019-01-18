@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3b5cde48-ad74-4de4-947c-cb93952af32f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/comunidade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/comunidade.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/display.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/display.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/rede.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/rede.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -55,8 +52,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/display.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="98" column="36" selection-start-line="98" selection-start-column="36" selection-end-line="98" selection-end-column="36" />
+            <state relative-caret-position="458">
+              <caret line="146" column="82" selection-start-line="146" selection-start-column="79" selection-end-line="146" selection-end-column="82" />
               <folding>
                 <element signature="method#menu#0;class#display#0" />
                 <element signature="method#entrar#0;class#display#0" />
@@ -64,7 +61,9 @@
                 <element signature="method#decisaoInicial#0;class#display#0" />
                 <element signature="method#info#0;class#display#0" />
                 <element signature="method#edit#0;class#display#0" />
-                <element signature="method#MsgAuto#0;class#display#0" />
+                <element signature="method#dispComunidade#0;class#display#0" />
+                <element signature="method#inserirComunidade#0;class#display#0" />
+                <element signature="method#novaComunidade#0;class#display#0" />
                 <element signature="method#solicitacao#0;class#display#0" />
                 <element signature="method#tratarSolicitacao#0;class#display#0" />
                 <element signature="method#novaMsg#0;class#display#0" />
@@ -211,6 +210,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28517398" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -222,7 +222,7 @@
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.92144024" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.92144024" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.45335516" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -253,7 +253,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/company/display.java</url>
-          <line>153</line>
+          <line>149</line>
           <properties />
           <option name="timeStamp" value="3" />
         </line-breakpoint>
@@ -267,13 +267,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/company/Mensagem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -312,10 +305,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Mensagem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/display.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="98" column="36" selection-start-line="98" selection-start-column="36" selection-end-line="98" selection-end-column="36" />
+        <state relative-caret-position="458">
+          <caret line="146" column="82" selection-start-line="146" selection-start-column="79" selection-end-line="146" selection-end-column="82" />
           <folding>
             <element signature="method#menu#0;class#display#0" />
             <element signature="method#entrar#0;class#display#0" />
@@ -323,7 +323,9 @@
             <element signature="method#decisaoInicial#0;class#display#0" />
             <element signature="method#info#0;class#display#0" />
             <element signature="method#edit#0;class#display#0" />
-            <element signature="method#MsgAuto#0;class#display#0" />
+            <element signature="method#dispComunidade#0;class#display#0" />
+            <element signature="method#inserirComunidade#0;class#display#0" />
+            <element signature="method#novaComunidade#0;class#display#0" />
             <element signature="method#solicitacao#0;class#display#0" />
             <element signature="method#tratarSolicitacao#0;class#display#0" />
             <element signature="method#novaMsg#0;class#display#0" />
