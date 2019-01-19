@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3b5cde48-ad74-4de4-947c-cb93952af32f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/src/com/company/display.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/display.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/perfil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/perfil.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -53,13 +52,15 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/display.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
-              <caret line="79" column="92" selection-start-line="79" selection-start-column="92" selection-end-line="79" selection-end-column="92" />
+            <state relative-caret-position="459">
+              <caret line="374" lean-forward="true" selection-start-line="374" selection-end-line="374" />
               <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="method#menu#0;class#display#0" />
                 <element signature="method#entrar#0;class#display#0" />
                 <element signature="method#novoUsuario#0;class#display#0" />
                 <element signature="method#decisaoInicial#0;class#display#0" />
+                <element signature="method#info#0;class#display#0" />
                 <element signature="method#edit#0;class#display#0" />
                 <element signature="method#dispComunidade#0;class#display#0" />
                 <element signature="method#inserirComunidade#0;class#display#0" />
@@ -111,9 +112,11 @@
       <find>numeros</find>
       <find>ocupado</find>
       <find>List</find>
+      <find>Public</find>
     </findStrings>
     <replaceStrings>
       <replace>ArrayList</replace>
+      <replace>private</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -249,25 +252,25 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/company/display.java</url>
-          <line>91</line>
+          <line>107</line>
           <properties />
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/company/display.java</url>
-          <line>149</line>
+          <line>185</line>
           <properties />
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/company/display.java</url>
-          <line>12</line>
+          <line>14</line>
           <properties />
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/com/company/display.java</url>
-          <line>156</line>
+          <line>200</line>
           <properties class="com.company.display" method="tratarSolicitacao">
             <option name="EMULATED" value="true" />
           </properties>
@@ -277,13 +280,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/util/ArrayList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7">
@@ -322,15 +318,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/display.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="79" column="92" selection-start-line="79" selection-start-column="92" selection-end-line="79" selection-end-column="92" />
+        <state relative-caret-position="459">
+          <caret line="374" lean-forward="true" selection-start-line="374" selection-end-line="374" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="method#menu#0;class#display#0" />
             <element signature="method#entrar#0;class#display#0" />
             <element signature="method#novoUsuario#0;class#display#0" />
             <element signature="method#decisaoInicial#0;class#display#0" />
+            <element signature="method#info#0;class#display#0" />
             <element signature="method#edit#0;class#display#0" />
             <element signature="method#dispComunidade#0;class#display#0" />
             <element signature="method#inserirComunidade#0;class#display#0" />
