@@ -12,7 +12,7 @@ public class perfil {
 
     @Override
     public String toString() {
-        return "nome: " + this.nome + "\n login: " + this.login + "\n";
+        return "nome: " + this.nome + "-- login: " + this.login + "\n";
     }
 
     public perfil ( int senha, String nome){

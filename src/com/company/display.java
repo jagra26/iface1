@@ -74,10 +74,10 @@ public class display {
         {
             System.out.print("Você não possui amigos\n");
         }else{
-            System.out.print("nome -- login\n");
+            System.out.print("Amigos\nnome -- login\n");
             for (int i=0; i<rede1.usuarios.get(login).amigos.size(); i++)
             {
-                info(rede1, rede1.usuarios.get(login).amigos.get(i));
+                System.out.print(rede1.usuarios.get(rede1.usuarios.get(login).amigos.get(i)));
             }
         }
     }
@@ -152,27 +152,23 @@ public class display {
         System.out.print("Digite o login do usuario que você quer ser amigo \n");
         amilog = entrada.nextInt();
         rede1.usuarios.get(amilog).solicitacoes.add(login);
-        System.out.print("solicitacao enviada!");
+        System.out.print("solicitacao enviada!\n");
     }
     public void tratarSolicitacao(rede rede1, int login){
         Scanner entrada = new Scanner(System.in);
         int resp;
-        System.out.print(rede1.usuarios.get(login).solicitacoes.size() + "\n");
-        for (Integer i: rede1.usuarios.get(login).solicitacoes
-             ) {
-            if (i != -1){
-                System.out.printf("%s quer ser seu amigo\naceitar - digite 1\nrecusar - digite 2\n limbo - digite 3\n",
-                        rede1.usuarios.get(rede1.usuarios.get(login).solicitacoes.get(i)).nome);
+        for (int i = 0; i < rede1.usuarios.get(login).solicitacoes.size(); i++) {
+            if (rede1.usuarios.get(login).solicitacoes.get(i) != -1){
+                System.out.print(rede1.usuarios.get(rede1.usuarios.get(login).solicitacoes.get(i)).nome + " quer ser seu amigo:\n");
+                System.out.print("Escolha uma opção:\n aceitar -- 1  recusar -- 2 limbo --3 \n");
                 resp = entrada.nextInt();
-                switch (resp) {
+                switch (resp){
                     case 1:
-                        rede1.usuarios.get(login).amigos.add(rede1.usuarios.get(login).solicitacoes.get(i));
-                        //rede1.usuarios.get(i).amigos.add(login);
-                        rede1.usuarios.get(login).solicitacoes.add(i, -1);
-                        System.out.printf("Voce e %s são amigos agora!\n", rede1.usuarios.get(i).nome);
+                        rede1.usuarios.get(login).amigos.add(i);
+                        rede1.usuarios.get(login).solicitacoes.set(i, -1);
                         break;
                     case 2:
-                        rede1.usuarios.get(login).solicitacoes.add(i, -1);
+                        rede1.usuarios.get(login).solicitacoes.set(i, -1);
                         break;
                     case 3:
                         break;
@@ -244,7 +240,7 @@ public class display {
             System.out.print(i + " " + rede1.comunidades.get(i) +"\n");
         }
     }
-    public boolean menuUser(rede rede1, int login, boolean log) /*terminar*/{
+    public boolean menuUser(rede rede1, int login, boolean log){
         System.out.print("Editar perfil - digite 1\n");
         System.out.print("Adicionar amigos - digite 2\n");
         System.out.print("Mensagens - digite 3\n");
